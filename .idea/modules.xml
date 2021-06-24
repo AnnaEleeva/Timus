@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/1.BeginnerTasks/Alg.iml" filepath="$PROJECT_DIR$/1.BeginnerTasks/Alg.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Timus.iml" filepath="$PROJECT_DIR$/Timus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/YandexContest2021/YandexContest2021.iml" filepath="$PROJECT_DIR$/YandexContest2021/YandexContest2021.iml" />
+    </modules>
+  </component>
+</project>
