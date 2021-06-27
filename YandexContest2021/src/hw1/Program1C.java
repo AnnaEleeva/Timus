@@ -1,3 +1,5 @@
+package hw1;
+
 import java.util.Scanner;
 public class Program1C {
     public static void main(String[] args) {

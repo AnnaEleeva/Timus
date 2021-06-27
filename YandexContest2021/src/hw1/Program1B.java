@@ -1,4 +1,4 @@
-/*
+package hw1;/*
 https://contest.yandex.ru/contest/27393/problems/B/
 */
 
