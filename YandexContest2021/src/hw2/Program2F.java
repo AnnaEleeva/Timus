@@ -11,13 +11,19 @@ public class Program2F {
 
     public static void main(String[] args) throws IOException {
         String fileName = "C:\\Users\\user\\IdeaProjects\\Timus\\YandexContest2021\\src\\hw2\\input.txt";
-        int tailLength=makeSimmetric(fileName);
-        System.out.println(tailLength);
+        //делаем последовательность симметричной
+        ArrayList<Integer> tailArray=makeSimmetric(fileName);
+        //вывод результата
+        System.out.println(tailArray.size());
+        for(int e : tailArray){
+            System.out.print(e+" ");
+        }
+        //System.out.println(tailLength);
 
 
     }
     //делает лист симметричным, возвращая необходимое число элементов для симметричности
-    public static int makeSimmetric(String fileName) throws IOException {
+    public static ArrayList<Integer> makeSimmetric(String fileName) throws IOException {
         int tailLength=0;
 
         Path path = Paths.get(fileName);
@@ -25,6 +31,9 @@ public class Program2F {
         ArrayList <Integer> inputList =new ArrayList<>();
         ArrayList <Integer> listToSimmetric =new ArrayList<>();
         ArrayList<Integer> tailArray=new ArrayList<>();
+        ArrayList<Integer> tempArray=new ArrayList<>();
+        //
+        int countNumbers=scanner.nextInt();
         //запишем последовательность в массив
         while(scanner.hasNextInt()){
             int x = scanner.nextInt();
@@ -39,13 +48,14 @@ public class Program2F {
             listToSimmetric=new ArrayList<>();
             listToSimmetric.addAll(inputList);
             tailArray.add(inputList.get(tailLength));
-            ArrayList<Integer> tempArray=new ArrayList<>();
+            tempArray=new ArrayList<>();
             tempArray.addAll(tailArray);
             //Collections.copy(tempArray,tailArray);
             Collections.reverse(tempArray);
             listToSimmetric.addAll(tempArray);
         }
-        return tailLength;
+        //System.out.println(tempArray);
+        return tempArray;
     }
     //проверяет симметричны ли элементы листе
     public static boolean isSimmetric(ArrayList <Integer>  listToSimmetric){
