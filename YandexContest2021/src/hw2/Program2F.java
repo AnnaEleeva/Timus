@@ -1,3 +1,6 @@
+//Описание задачи
+//https://contest.yandex.ru/contest/27472/problems/F/
+
 package hw2;
 
 import java.io.IOException;
