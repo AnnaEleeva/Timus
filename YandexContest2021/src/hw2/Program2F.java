@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Program2F {
@@ -23,7 +24,7 @@ public class Program2F {
         Scanner scanner = new Scanner(path);
         ArrayList <Integer> inputList =new ArrayList<>();
         ArrayList <Integer> listToSimmetric =new ArrayList<>();
-
+        ArrayList<Integer> tailArray=new ArrayList<>();
         //запишем последовательность в массив
         while(scanner.hasNextInt()){
             int x = scanner.nextInt();
@@ -31,10 +32,18 @@ public class Program2F {
             listToSimmetric.add(x);
         }
         for(tailLength=0;tailLength<inputList.size();tailLength++){
+
             if(isSimmetric(listToSimmetric)){
                 break;
             }
-            listToSimmetric.add(inputList.get(tailLength));
+            listToSimmetric=new ArrayList<>();
+            listToSimmetric.addAll(inputList);
+            tailArray.add(inputList.get(tailLength));
+            ArrayList<Integer> tempArray=new ArrayList<>();
+            tempArray.addAll(tailArray);
+            //Collections.copy(tempArray,tailArray);
+            Collections.reverse(tempArray);
+            listToSimmetric.addAll(tempArray);
         }
         return tailLength;
     }
