@@ -2,7 +2,8 @@ package lessons.lesson1;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
 
 import static lessons.lesson1.Task2.findMax;
 
