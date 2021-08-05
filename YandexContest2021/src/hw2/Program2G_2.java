@@ -58,6 +58,8 @@ public class Program2G_2 {
             }
 
             multiplicationPositive=(long)maxPositive*preMaxPositive;
+            System.out.println(maxPositive+" "+preMaxPositive);
+            System.out.println(multiplicationPositive);
         }
 
         int minNegative=Integer.MAX_VALUE;
