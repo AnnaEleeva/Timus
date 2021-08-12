@@ -1,21 +1,17 @@
+package hw2;
+
 /*
 Наибольшее произведение трех чисел
 Ввод: 3 5 1 7 9 0 9 -3 10
 Вывод: 10 9 9
-
-падает на
-ввод 9 1 -1 -1
-вывод 1 9 -1 = -9 < 9 -1 -1 9
 */
-package hw2;
-
 
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Program2H {
+public class Program2H_old {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String strNumbers=scanner.nextLine();
@@ -23,10 +19,6 @@ public class Program2H {
 
         //сформируем ArrayList из строки чисел
         String [] strings =strNumbers.split(" ");
-        if(strings.length<=3) {
-            System.out.println(strNumbers);
-            return;
-        }
         int[] arrayNumbers = Arrays.stream(strings).mapToInt(Integer::parseInt).toArray();
         ArrayList<Integer> arrayNumbersList=new ArrayList<>();
         for(int e:arrayNumbers){
@@ -36,65 +28,34 @@ public class Program2H {
         //получим пары - кандидаты быть в тройке
         //String[] arrayMaxMultiPair=getPairArray(arrayNumbersList);
 
-        //получим пары, дающие максимальное произведение ( оно же всегда позитивно)
-        ArrayList<String> pairsArray=getPairArray(arrayNumbersList);
-        String strResPairPositive=pairsArray.get(0);
-        String strResPairNegative=pairsArray.get(1);
+        //получим пару, дающую максимальное произведение ( оно же всегда позитивно)
+        String strResPair=getPairArray(arrayNumbersList);
 
-        boolean isOnePair=false;
-        Long maxMuliplication=null;
 
-        if(strResPairNegative.equals("")) isOnePair=true;
 
         //Распарсим пару в нормальные массивы чисел
-        int[] positivePair=Arrays.stream( strResPairPositive.split(" ")).mapToInt(Integer::parseInt).toArray();
+        int[] positivePair=Arrays.stream( strResPair.split(" ")).mapToInt(Integer::parseInt).toArray();
 
-        ArrayList<Integer> newArrayWithoutPositivePair=getNewArrayNumbers(arrayNumbers,positivePair);
+        ArrayList<Integer> newArrayWithoutPair=getNewArrayNumbers(arrayNumbers,positivePair);
 
 
         //ищем максимальное число среди оставшихся чисел
-        Integer maxNum = Integer.MIN_VALUE;
+        int maxNum = Integer.MIN_VALUE;
 
-        for (int e = 0; e < newArrayWithoutPositivePair.size(); e++) {
-            if (newArrayWithoutPositivePair.get(e) >= maxNum) {
-                maxNum = newArrayWithoutPositivePair.get(e);
+
+        for (int e = 0; e < newArrayWithoutPair.size(); e++) {
+            if (newArrayWithoutPair.get(e) >= maxNum) {
+                maxNum = newArrayWithoutPair.get(e);
 
             }
         }
-        //выясним произведение позитивной пары с максимальным найденным числом
-        maxMuliplication=maxNum*(long)positivePair[0]*positivePair[1];
 
-        if(!isOnePair){
-            //Распарсим пару в нормальные массивы чисел
-            int[] negativePair=Arrays.stream( strResPairNegative.split(" ")).mapToInt(Integer::parseInt).toArray();
-
-            ArrayList<Integer> newArrayWithoutNegativePair=getNewArrayNumbers(arrayNumbers,negativePair);
-
-
-            //ищем максимальное число среди оставшихся чисел
-            int maxNum2 = Integer.MIN_VALUE;
-
-            for (int e = 0; e < newArrayWithoutNegativePair.size(); e++) {
-                if (newArrayWithoutNegativePair.get(e) >= maxNum2) {
-                    maxNum2 = newArrayWithoutNegativePair.get(e);
-
-                }
-            }
-            long temp=maxNum2*(long)negativePair[0]*negativePair[1];
-            if(temp>maxMuliplication){
-                maxMuliplication=temp;
-                System.out.println(strResPairNegative+" "+maxNum2);
-                return;
-            }
-
-        }
-
-        System.out.println(strResPairPositive+" "+maxNum);
-        return;
+        System.out.println(strResPair+" "+maxNum);
 
 
     }
 
+    //возвращает новый лист с числами, убрав взятую пару чисел
     public static ArrayList<Integer> getNewArrayNumbers(int[] arrayNumbers,  int[] positivePair){
         //добавим все, кроме 2х позитивных
         boolean wasFirstPositive=false;
@@ -112,21 +73,19 @@ public class Program2H {
             arrayNumbers_PositivePait.add(e);
 
         }
-       // arrayNumbers_PositivePait.add(positivePair[0]*positivePair[1]);
+        // arrayNumbers_PositivePait.add(positivePair[0]*positivePair[1]);
         return arrayNumbers_PositivePait;
 
 
     }
 
 
+    //возвращает максимальные положительные и минимальные отрицательные числа
     //передаем строку вида "8 9 2 -1 -5 3"
     //возвращает массив arr[0]="8 9" arr[1]="-1 5"
-    public static ArrayList<String>  getPairArray(ArrayList<Integer> array){
+    public static String  getPairArray(ArrayList<Integer> array){
         //String [] strings =strNumbers.split(" ");
         //int[] array = Arrays.stream(strings).mapToInt(Integer::parseInt).toArray();
-        ArrayList<String> result=new ArrayList<>();
-        result.add("");// index 0
-        result.add("");// index 1
 
 
         String [] returnArray=new String[2];
@@ -135,14 +94,12 @@ public class Program2H {
             if(array.get(0)<array.get(1)){
                 //System.out.println(array[0]+" "+array[1]);
                 //returnArray[0]=array.get(0)+" "+array.get(1);
-               // return array.get(0)+" "+array.get(1);
-                result.set(0,array.get(0)+" "+array.get(1));
+                return array.get(0)+" "+array.get(1);
             }
             else{
                 //System.out.println(array[1]+" "+array[0]);
                 //returnArray[1]=array.get(1)+" "+array.get(0);
-               // return array.get(1)+" "+array.get(0);
-                result.set(0,array.get(1)+" "+array.get(0));
+                return array.get(1)+" "+array.get(0);
             }
             //return returnArray;
         }
@@ -207,17 +164,14 @@ public class Program2H {
         returnArray[0]=preMaxPositive+ " "+ maxPositive;
         returnArray[1]=minNegative+" "+preMinNegative;
 
-//        if(multiplicationPositive>multiplicationNegative) {
-//            //System.out.println(preMaxPositive+ " "+ maxPositive);
-//            return preMaxPositive+ " "+ maxPositive;
-//        }
-//        else{
-//            //System.out.println(minNegative+" "+preMinNegative);
-//            return minNegative+" "+preMinNegative;
-//        }
-        result.set(0,preMaxPositive+ " "+ maxPositive);
-        result.set(1,minNegative+" "+preMinNegative);
+        if(multiplicationPositive>multiplicationNegative) {
+            //System.out.println(preMaxPositive+ " "+ maxPositive);
+            return preMaxPositive+ " "+ maxPositive;
+        }
+        else{
+            //System.out.println(minNegative+" "+preMinNegative);
+            return minNegative+" "+preMinNegative;
+        }
         //return  returnArray;
-        return  result;
     }
 }
