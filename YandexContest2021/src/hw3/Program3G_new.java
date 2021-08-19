@@ -10,8 +10,7 @@ import java.util.Scanner;
 public class Program3G_new {
     public static void main(String[] args) throws IOException {
 
-        HashSet<Integer> hashSet1=new HashSet<>();
-        HashSet<Integer> hashSet2=new HashSet<>();
+
         String fileName = "D:\\Загрузки\\demo (2)\\Timus\\YandexContest2021\\src\\hw3\\Program3G_test";
         Path path = Paths.get(fileName);
         Scanner scanner = new Scanner(path);
@@ -34,6 +33,11 @@ public class Program3G_new {
             String[] pairStr=scanner.nextLine().split(" ");
             int[] pair = Arrays.stream(pairStr).mapToInt(Integer::parseInt).toArray();
             if(Math.abs(pair[0]-middle1)==Math.abs(pair[1]-middle2)){
+                if((pair[0]!=middle1)&&(pair[1]!=middle2)){
+                    if(pair[0]==pair[1]){
+                        continue;
+                    }
+                }
                 countHonestTurtle++;
             }
         }
