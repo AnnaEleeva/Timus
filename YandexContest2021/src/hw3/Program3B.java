@@ -28,6 +28,7 @@ public class Program3B {
         for(int e:arrayNumbers2){
             hashSet2.add(e);
         }
+        //пересечение множест (в первом останутся только те, что есть и во 2)
         hashSet1.retainAll(hashSet2);
 //        ArrayList<Integer> arrayList = new ArrayList<>(hashSet1);
 //        Collections.sort(arrayList);
