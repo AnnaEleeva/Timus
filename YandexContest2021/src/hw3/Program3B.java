@@ -20,8 +20,8 @@ public class Program3B {
 
         int[] arrayNumbers2 = Arrays.stream(strings2).mapToInt(Integer::parseInt).toArray();
 
-        HashSet<Integer> hashSet1=new HashSet<>();
-        HashSet<Integer> hashSet2=new HashSet<>();
+        TreeSet<Integer> hashSet1=new TreeSet<>();
+        TreeSet<Integer> hashSet2=new TreeSet<>();
         for(int e:arrayNumbers1){
             hashSet1.add(e);
         }
