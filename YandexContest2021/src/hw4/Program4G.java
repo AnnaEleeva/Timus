@@ -14,7 +14,7 @@ import java.util.Scanner;
 //           начисляется только целое число денежных единиц. Дробная часть начисленных процентов отбрасывается.
 
 
-public class ProgramG {
+public class Program4G {
     public static  HashMap<String,Integer> accountMap=new HashMap<>();
     public static void main(String[] args) throws IOException {
 
