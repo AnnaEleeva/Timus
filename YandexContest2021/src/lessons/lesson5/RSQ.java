@@ -1,4 +1,4 @@
-//Range Sum Query - Сумма элементов на отрезке
+//Range Sum Query - Сумма элементов на отрезке O(n)
 package lessons.lesson5;
 
 import java.io.IOException;
