@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 public class Program4H {
     public static void main(String[] args) throws IOException {
-        String fileName = "C:\\Users\\1\\IdeaProjects\\Timus\\YandexContest2021\\src\\hw4\\Program4H_test.txt";
+        String fileName = "C:\\Users\\1\\IdeaProjects\\Timus\\YandexContest2021\\src\\hw4\\Task2_test.txt";
         Path path = Paths.get(fileName);
         Scanner scanner = new Scanner(path);
 
