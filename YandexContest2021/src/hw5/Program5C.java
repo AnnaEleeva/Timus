@@ -27,6 +27,9 @@ public class Program5C {
             mountainPeaksRise[i]=(y-oldY) ;
             oldY=y;
         }
+        int[] prefixSumLeftToRight=makePrefixSumLeftToRight(mountainPeaksRise);
+        int[] prefixSumRightToLeft= makePrefixSumRightToLeft(mountainPeaksRise);
+
         //кол-во маршрутов
         int traсkCount = Integer.parseInt(scanner.nextLine());
         //нумерация маршрутов с 0
@@ -37,13 +40,13 @@ public class Program5C {
             //создаем массив префиксных сумм, а по нему уже высчитываем каждый маршрут
             //если маршрут слева-направо (нормально) - считаем положительные (подъемы)
             if(trackStartPeakIndex<trackEndPeakIndex){
-                int[] a=makePrefixSumLeftToRight(mountainPeaksRise);
-                int result= rsq(a,trackStartPeakIndex,trackEndPeakIndex);
+
+                int result= rsq(prefixSumLeftToRight,trackStartPeakIndex,trackEndPeakIndex);
                 System.out.println(result);
             }
             //иначе считаем отрицательные (подъемы)
             else{
-                int result= rsq(makePrefixSumRightToLeft(mountainPeaksRise),trackStartPeakIndex,trackEndPeakIndex);
+                int result= rsq(prefixSumRightToLeft,trackStartPeakIndex,trackEndPeakIndex);
                 System.out.println(result);
             }
 
