@@ -28,14 +28,12 @@ package hw5;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
 public class Program5B  {
 
     public static void main(String[] args) throws IOException {
-        String fileName = "C:\\Users\\1\\IdeaProjects\\Timus\\YandexContest2021\\src\\hw5\\Program5B_test.txt";
+        String fileName = "YandexContest2021/src/hw5/Program5B_test.txt";
         Path path = Paths.get(fileName);
         Scanner scanner = new Scanner(path);
 
@@ -54,38 +52,36 @@ public class Program5B  {
         //System.out.println(countZeroSumRanges(countPrefixSums(arrayNumbers)));
     }
     //делаем карту с префиксными суммами.
-    public static HashMap<Integer, Integer> countPrefixSums(int[]array){
-        //карта префиксных сумм, в которых без индексов хранятся подсчитываемые суммы и их поличество
-        HashMap<Integer,Integer> prefixSumByValue=new HashMap<>();
+    public static HashSet<Integer> countPrefixSums(int[]array){
+        //карта префиксных сумм, в которых без индексов хранятся подсчитываемые суммы и их количество
+        HashSet<Integer> prefixSumByValue=new HashSet<>();//Внимание! Количество считать на надо. Можно было сделать сетом
         //сюда суммируем все значения
         int nowSum=0;
         //добавляем 0-е значение префиксных сумм
-        prefixSumByValue.put(nowSum,1);
+        prefixSumByValue.add(nowSum);
         for(int now:array){
             nowSum+=now;
-            if(!prefixSumByValue.containsKey(nowSum)){
-                prefixSumByValue.put(nowSum,0);
-            }
-            prefixSumByValue.put(nowSum,prefixSumByValue.get(nowSum)+1);
+
+            prefixSumByValue.add(nowSum);
         }
         return prefixSumByValue;
     }
 
     //берем две одинаковые карты получившихся префиксных сумм
     // По одной просто идем, а в другой смотрим есть ли значение e+k, если есть, уменьшаем кол-во
-    public static int countZeroSumRanges(HashMap<Integer,Integer> prefixSumByValue,HashMap<Integer,Integer> prefixSumByValue2,int k){
+    public static int countZeroSumRanges(HashSet<Integer> prefixSumByValue,HashSet<Integer> prefixSumByValue2,int k){
         int cntRanges=0;
 
         //по какой-то карте идем, а в какой-то - меняем кол-во встречаемых чисел.
         // Т.е в префиксной сумме  0 17 24 34 41 51 к каждому числу прибавляем 17 и смотрим есть ли такая сумма
         // (0+17)- есть, (17+17)-есть, (24+17)=41 -есть, (34+17)=51-есть, (51+17)-нет ИТОГО: 4
-        for (int e : prefixSumByValue2.keySet()) {
-            if (prefixSumByValue.containsKey(e + k)) {
-                if (prefixSumByValue.get(e + k) == 1) {
-                    prefixSumByValue.remove(e + k);
-                } else if (prefixSumByValue.get(e + k) > 1) {
-                    prefixSumByValue.put(e + k, prefixSumByValue.get(e + k) - 1);
-                }
+        for (int e : prefixSumByValue2) {
+            if (prefixSumByValue.contains(e + k)) {
+              //  if (prefixSumByValue.get(e + k) == 1) {
+                   prefixSumByValue.remove(e + k);
+              //  } else if (prefixSumByValue.get(e + k) > 1) {
+              //      prefixSumByValue.put(e + k, prefixSumByValue.get(e + k) - 1);
+              //  }
                 cntRanges++;
             }
         }

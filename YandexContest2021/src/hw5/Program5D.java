@@ -30,6 +30,8 @@ public class Program5D {
 
         System.out.println(countPairMonuments(monuments,d));
     }
+    //4 4
+    //1 3 5 8   //1 и 8,  3 и 8
     public static long countPairMonuments(int[] monuments,int d){
         long countGoodPair=0;
         int last=0;
