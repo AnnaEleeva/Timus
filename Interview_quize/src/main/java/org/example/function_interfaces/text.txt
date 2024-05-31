@@ -1,0 +1,6 @@
+@FunctionalInterface - сообщить компилятору, что данный интерфейс функциональный и должен содержать не более одного абстрактного метода.
+
+Predicate
+Runnable
+Comparator
+Callable

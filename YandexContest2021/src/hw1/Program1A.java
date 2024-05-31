@@ -35,6 +35,5 @@ public class Program1A {
             else System.out.println(t1);
         }
 
-
     }
 }

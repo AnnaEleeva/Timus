@@ -1,0 +1,3 @@
+Cloneable
+Serializable
+Remote

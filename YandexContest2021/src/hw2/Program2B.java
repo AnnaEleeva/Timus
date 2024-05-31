@@ -85,8 +85,5 @@ public class Program2B {
             }
 
         }else System.out.println("RANDOM");
-
-
-
     }
 }

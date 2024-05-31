@@ -1,0 +1,6 @@
+kubectl get pods --all-namespaces
+
+Kubectl apply -f [имя манифеста yaml] - команда apply применяет манифест к кластеру,
+
+ContainerCreating
+Running
